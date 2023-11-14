@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-moonlanding
+  name: web-moonlanding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-moonlanding
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: web-moonlanding
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 10
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/role
+                operator: In
+                values:
+                - 'worker'
+          - weight: 10
+            preference:
+              matchExpressions:
+              - key: core
+                operator: In
+                values:
+                - '3'
+          - weight: 5
+            preference:
+              matchExpressions:
+              - key: core
+                operator: In
+                values:
+                - '2'
+          - weight: 5
+            preference:
+              matchExpressions:
+              - key: corecount
+                operator: In
+                values:
+                - 'ssd'
+      imagePullSecrets:
+      - name: ghcr.io
+      containers:
+      - name: web-moonlanding
+        args:
+          - gunicorn 
+          - app.wsgi:application 
+          - --worker-class=gevent 
+          - --worker-connections=3000 
+          - --workers=3 
+          - --threads=2
+          - --bind 
+          - 0.0.0.0:8000 
+        image: ghcr.io/mcbtaguiad/web-moonlanding:v0.1.0
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8000
+        # volumeMounts:
+        #   - mountPath: /home/app/web/staticfiles
+        #     subPath: moonlanding
+        #     name: web-prod
+        envFrom:
+          - configMapRef:
+              name: web-env-prod
+      restartPolicy: Always
+      # volumes:
+      #   - name: web-prod
+      #     persistentVolumeClaim:
+      #       claimName: web-moonlanding-pvc

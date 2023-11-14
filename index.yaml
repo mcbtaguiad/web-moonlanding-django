@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  jeremie:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-29T20:20:48.842726533+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 6ab9ab497a27501913654a103fd074b77e86c109e8373df1bf1828e220c4d555
+    name: jeremie
+    type: application
+    urls:
+    - https://tagsdev.github.io/web_jeremie/jeremie-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-01-29T20:20:48.841970034+08:00"
