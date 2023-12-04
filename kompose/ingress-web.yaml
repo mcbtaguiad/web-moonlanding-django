@@ -14,10 +14,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-      - moonlanding.tagsdev.click
+      - moonlanding.tagsdev.xyz
     secretName: moonlanding-tls
   rules:
-  - host: moonlanding.tagsdev.click
+  - host: moonlanding.tagsdev.xyz
     http:
       paths:
       - path: /
