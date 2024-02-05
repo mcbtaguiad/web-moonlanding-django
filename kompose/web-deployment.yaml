@@ -5,7 +5,7 @@ metadata:
     app: web-moonlanding
   name: web-moonlanding
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: web-moonlanding
@@ -30,27 +30,27 @@ spec:
                 values:
                 - linux
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 10
-            preference:
-              matchExpressions:
-              - key: kubernetes.io/role
-                operator: In
-                values:
-                - 'worker'
+          # - weight: 10
+          #   preference:
+          #     matchExpressions:
+          #     - key: kubernetes.io/role
+          #       operator: In
+          #       values:
+          #       - 'worker'
           - weight: 10
             preference:
               matchExpressions:
               - key: core
                 operator: In
                 values:
-                - '3'
+                - '4'
           - weight: 5
             preference:
               matchExpressions:
               - key: core
                 operator: In
                 values:
-                - '2'
+                - '3'
           - weight: 5
             preference:
               matchExpressions:
@@ -71,7 +71,7 @@ spec:
           - --threads=2
           - --bind 
           - 0.0.0.0:8000 
-        image: ghcr.io/mcbtaguiad/web-moonlanding:v0.1.1
+        image: ghcr.io/mcbtaguiad/web-moonlanding:v0.1.2
         imagePullPolicy: Always
         ports:
           - containerPort: 8000
