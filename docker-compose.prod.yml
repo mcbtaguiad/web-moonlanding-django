@@ -5,7 +5,7 @@ services:
     container_name: web
     image: ghcr.io/mcbtaguiad/web-moonlanding:v1.2.0
     build: 
-      context: ./app
+      context: .
       dockerfile: Dockerfile.prod
     command: gunicorn app.wsgi:application --bind 0.0.0.0:8000 --worker-class=gevent --worker-connections=3000 --workers=3 --threads=2
     volumes:

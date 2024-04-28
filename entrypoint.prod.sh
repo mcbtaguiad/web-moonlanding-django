@@ -12,7 +12,7 @@ then
 fi
 
 
-use_compression = false
+# use_compression = false
 
 python manage.py migrate --noinput
 python manage.py collectstatic --no-input --clear
