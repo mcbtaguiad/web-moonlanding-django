@@ -1,13 +1,13 @@
 asgiref
-Django
+Django==4.2.11
 django-appconf
-django-compressor
+django-compressor==4.4
 django-libsass
 gunicorn
 libsass
 psycopg2-binary
-rcssmin
-rjsmin
+rcssmin==1.1.1
+rjsmin==1.2.1
 sqlparse
 whitenoise
 gevent
