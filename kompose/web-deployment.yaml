@@ -43,14 +43,14 @@ spec:
               - key: core
                 operator: In
                 values:
-                - '4'
+                - '3'
           - weight: 5
             preference:
               matchExpressions:
               - key: core
                 operator: In
                 values:
-                - '3'
+                - '4'
           - weight: 5
             preference:
               matchExpressions:
