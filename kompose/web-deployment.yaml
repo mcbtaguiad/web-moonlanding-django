@@ -5,7 +5,7 @@ metadata:
     app: web-moonlanding
   name: web-moonlanding
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: web-moonlanding
