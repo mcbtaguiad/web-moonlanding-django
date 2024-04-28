@@ -71,7 +71,7 @@ spec:
           - --threads=2
           - --bind 
           - 0.0.0.0:8000 
-        image: ghcr.io/mcbtaguiad/web-moonlanding:main
+        image: ghcr.io/mcbtaguiad/web-moonlanding-django:main
         imagePullPolicy: Always
         ports:
           - containerPort: 8000
