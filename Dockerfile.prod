@@ -3,7 +3,7 @@
 ###########
 
 # pull official base image
-FROM python:3.12.3-bullseye as builder
+FROM python:3.15-rc-bookworm as builder
 
 # set work directory
 WORKDIR /usr/src/app
@@ -35,7 +35,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 #########
 
 # pull official base image
-FROM python:3.12.3-bullseye
+FROM python:3.15-rc-bookworm
 
 # create directory for the app user
 WORKDIR /app
@@ -54,7 +54,7 @@ WORKDIR /app
 # WORKDIR $APP_HOME
 
 # install dependencies
-RUN apt -y update && apt install -y libpq-dev netcat
+RUN apt -y update && apt install -y libpq-dev netcat-traditional
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache /wheels/*
